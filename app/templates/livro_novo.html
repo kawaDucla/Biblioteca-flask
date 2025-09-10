@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 style="color: rgb(34, 139, 34);">Cadastrar novo livro</h3>
+<form method="POST">
+    {{ form.csrf_token }}
+    {{ form.titulo.label }} {{ form.titulo(class="form-control mb-2", style="border-color: rgb(60, 179, 113);") }}
+    {{ form.autor.label }} {{ form.autor(class="form-control mb-2", style="border-color: rgb(60, 179, 113);") }}
+    {{ form.editora.label }} {{ form.editora(class="form-control mb-2", style="border-color: rgb(60, 179, 113);") }}
+    {{ form.anoPublicacao.label }} {{ form.anoPublicacao(class="form-control mb-2", style="border-color: rgb(60, 179, 113);") }}
+    {{ form.genero.label }} {{ form.genero(class="form-control mb-2", style="border-color: rgb(60, 179, 113);") }}
+    {{ form.quantidade_disponivel.label }} {{ form.quantidade_disponivel(class="form-control mb-3", style="border-color: rgb(60, 179, 113);") }}
+    {{ form.btnSubmit(class="btn", style="background-color: rgb(60, 179, 113); color: white;") }}
+</form>
+{% endblock %}

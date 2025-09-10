@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg" style="background-color: rgb(0, 0, 0); margin-bottom: 1.5rem;">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="{{ url_for('homepage') }}">Biblioteca</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a href="{{ url_for('livro_lista') }}" class="btn m-1" style="background-color: rgb(60, 179, 113); color: white;">Livros</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('livro_novo') }}" class="btn m-1" style="background-color: rgb(60, 179, 113); color: white;">Cadastrar livro</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('emprestimo_lista') }}" class="btn m-1" style="background-color: rgb(60, 179, 113); color: white;">Empréstimos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('emprestimo_novo') }}" class="btn m-1" style="background-color: rgb(60, 179, 113); color: white;">Novo empréstimo</a>
+                </li>
+            </ul>
+            <span class="navbar-text text-white">
+                {% if current_user.is_authenticated %}
+                    {{ current_user.nome }}
+                    <a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm ms-2">Sair</a>
+                {% else %}
+                    <a href="{{ url_for('cadastro') }}" class="btn m-1 btn-sm" style="background-color: rgb(60, 179, 113); color: white;">Cadastrar</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</nav>

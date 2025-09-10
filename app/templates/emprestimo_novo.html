@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="container mt-3">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<h3 style="color: rgb(34, 139, 34);">Novo empréstimo</h3>
+<form method="POST">
+    {{ form.csrf_token }}
+    
+    <label style="color: rgb(34, 139, 34);">{{ form.user_id.label }}</label>
+    {{ form.user_id(class="form-select mb-2", style="border-color: rgb(60, 179, 113);") }}
+
+    <label style="color: rgb(34, 139, 34);">{{ form.livro_id.label }}</label>
+    {{ form.livro_id(class="form-select mb-2", style="border-color: rgb(60, 179, 113);") }}
+
+    <label style="color: rgb(34, 139, 34);">{{ form.data_emprestimo.label }}</label>
+    {{ form.data_emprestimo(class="form-control mb-3", style="border-color: rgb(60, 179, 113);") }}
+    
+    <label style="color: rgb(34, 139, 34);">{{ form.data_devolucao.label }}</label>
+    {{ form.data_devolucao(class="form-control mb-3", style="border-color: rgb(60, 179, 113);") }}
+
+    {{ form.btnSubmit(class="btn", style="background-color: rgb(60, 179, 113); color: white;") }}
+</form>
+{% endblock %}

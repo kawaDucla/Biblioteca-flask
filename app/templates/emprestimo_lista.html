@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 style="color: rgb(34, 139, 34);">Lista de empréstimos</h3>
+<table class="table table-striped mt-3" style="border: 1px solid rgb(60, 179, 113);">
+    <thead style="background-color: rgb(60, 179, 113); color: white;">
+        <tr>
+            <th>ID</th>
+            <th>Aluno</th>
+            <th>Livro</th>
+            <th>Data do Empréstimo</th>
+            <th>Data Prevista de Devolução</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for emp in emprestimos.dados %}
+        <tr style="border-bottom: 1px solid rgb(60, 179, 113);">
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.user.nome }}</td>
+            <td>{{ emp.livro.titulo }}</td>
+            <td>{{ emp.data_emprestimo.strftime("%d/%m/%Y") }}</td>
+            <td>{{ emp.data_devolucao.strftime("%d/%m/%Y") }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

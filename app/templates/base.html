@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .pinky {
+            background-color: rgb(34, 139, 34);  
+            border-color: rgb(34, 139, 34);
+            color: white;
+        }
+        .rosa {
+            background-color: rgb(60, 179, 113);
+            border-color: rgb(60, 179, 113);
+            color: white;
+        }
+        .folha {
+            background-color: rgb(46, 139, 87); 
+            border-color: rgb(46, 139, 87);
+            color: white;
+        }
+        .caule {
+            background-color: rgb(85, 107, 47);  
+            border-color: rgb(85, 107, 47);
+            color: white;
+        }
+
+        .pinky:hover, .rosa:hover, .folha:hover, .caule:hover {
+            filter: brightness(90%);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    {% include 'nave.html' %}
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

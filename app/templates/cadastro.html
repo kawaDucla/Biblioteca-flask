@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h3 class="mb-3" style="color: rgb(34, 139, 34);">Cadastro do aluno</h3>
+        <form method="POST">
+            {{ form.csrf_token }}
+            {{ form.nome.label }} {{ form.nome(class="form-control mb-2", style="border-color: rgb(60, 179, 113);") }}
+            {{ form.telefone.label }} {{ form.telefone(class="form-control mb-2", style="border-color: rgb(60, 179, 113);") }}
+            {{ form.email.label }} {{ form.email(class="form-control mb-2", style="border-color: rgb(60, 179, 113);") }}
+            {{ form.senha.label }} {{ form.senha(class="form-control mb-2", style="border-color: rgb(60, 179, 113);") }}
+            {{ form.confirmacao_senha.label }} {{ form.confirmacao_senha(class="form-control mb-3", style="border-color: rgb(60, 179, 113);") }}
+            {{ form.btnCadastrar(class="btn w-100", style="background-color: rgb(60, 179, 113); color: white;") }}
+        </form>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="mt-3">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+    </div>
+</div>
+{% endblock %}
