@@ -1,6 +1,8 @@
 from app import db, login_manager
 from datetime import datetime
 from flask_login import UserMixin
+from datetime import datetime, timedelta
+from app import db
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -27,9 +29,12 @@ class Livro(db.Model):
 
     emprestimos = db.relationship('Emprestimo', backref='livro', lazy=True)
 
+def default_devolucao():
+    return datetime.now() + timedelta(days=15)
+
 class Emprestimo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    data_emprestimo = db.Column(db.DateTime, default=datetime.now())
-    data_devolucao = db.Column(db.DateTime, default=datetime.now())
+    data_emprestimo = db.Column(db.DateTime, default=datetime.now)
+    data_devolucao = db.Column(db.DateTime, default=default_devolucao)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     livro_id = db.Column(db.Integer, db.ForeignKey('livro.id'), nullable=True)

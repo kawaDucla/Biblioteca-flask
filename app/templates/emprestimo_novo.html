@@ -24,12 +24,6 @@
     <label style="color: rgb(34, 139, 34);">{{ form.livro_id.label }}</label>
     {{ form.livro_id(class="form-select mb-2", style="border-color: rgb(60, 179, 113);") }}
 
-    <label style="color: rgb(34, 139, 34);">{{ form.data_emprestimo.label }}</label>
-    {{ form.data_emprestimo(class="form-control mb-3", style="border-color: rgb(60, 179, 113);") }}
-    
-    <label style="color: rgb(34, 139, 34);">{{ form.data_devolucao.label }}</label>
-    {{ form.data_devolucao(class="form-control mb-3", style="border-color: rgb(60, 179, 113);") }}
-
     {{ form.btnSubmit(class="btn", style="background-color: rgb(60, 179, 113); color: white;") }}
 </form>
 {% endblock %}

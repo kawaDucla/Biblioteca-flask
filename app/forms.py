@@ -69,8 +69,6 @@ class LivroForm(FlaskForm):
         db.session.commit()
 
 class EmprestimoForm(FlaskForm):
-    data_emprestimo = DateField('Data do Empréstimo', format='%Y-%m-%d', validators=[DataRequired()])
-    data_devolucao = DateField('Data de Devolução', format='%Y-%m-%d', validators=[DataRequired()])
     user_id = SelectField('Usuário', coerce=int, validators=[DataRequired()])
     livro_id = SelectField('Livro', coerce=int, validators=[DataRequired()])
     btnSubmit = SubmitField('Enviar')
@@ -81,14 +79,16 @@ class EmprestimoForm(FlaskForm):
         self.livro_id.choices = [(l.id, l.titulo) for l in Livro.query.all()]
     
     def save(self):
+        from datetime import datetime, timedelta
+        data_hoje = datetime.now()
+
         emprestimo = Emprestimo(
-            data_emprestimo = self.data_emprestimo.data,
-            data_devolucao = self.data_devolucao.data,
+            data_emprestimo = data_hoje,
+            data_devolucao = data_hoje + timedelta(days=15),
             user_id = self.user_id.data,
             livro_id = self.livro_id.data
         )
 
-        
         livro = Livro.query.get(self.livro_id.data)
         
         if livro and livro.quantidade_disponivel > 0:
@@ -99,5 +99,4 @@ class EmprestimoForm(FlaskForm):
             db.session.commit()
             return emprestimo
         else:
-            
             return None
